@@ -1,4 +1,9 @@
 # Learning-based schemes
+We support QAM4, QAM16 and QAM64 modulations. Number of transmit and receive anttenas can be set using ``--x-size`` and ``--y-size``, respectively. 
+
+## Offline training
+
+
 ## Online training
 For online training algorithm run:
 ```
