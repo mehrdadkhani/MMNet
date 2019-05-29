@@ -19,18 +19,10 @@ class detector(object):
         xhat = []
         helper = {}
         for k in range(1,self.L+1):  
-            print ("FIRST LAYER DIFFERENT LINEAR!!!!!!!!!!!!!!!!!!!!!!")
-            #if k==1:
-            #    xhatk, rk, onsager, helperk, den_output = layer(xhatk, rk, onsager, self.features, 'mmse2', self.denoiser_name, self.information)   
-            if False:
-                xhatk, rk, onsager, helperk, den_output = layer(xhatk, rk, onsager, self.features, 'lin_oamp', self.denoiser_name, self.information)   
-            if True:
-                xhatk, rk, onsager, helperk, den_output = layer(xhatk, rk, onsager, self.features, self.linear_name, self.denoiser_name, self.information)   
-            print("detector: den_ouput instead of xk")
+            xhatk, rk, onsager, helperk, den_output = layer(xhatk, rk, onsager, self.features, self.linear_name, self.denoiser_name, self.information)   
             xhat.append(den_output)
-            #xhat.append(xhatk)
             helper['layer'+str(k)] = helperk
-        print("total number of trainable variables:", self.get_n_vars())
+        print("Total number of trainable variables:", self.get_n_vars())
         return xhat, helper
 
     def get_n_vars(self):         

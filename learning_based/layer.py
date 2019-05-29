@@ -8,8 +8,6 @@ def layer(xhat, r, onsager, features, linear_name, denoiser_name, information):
     z, linear_helper = linear_fun(xhat, r, features)
     features['onsager'] = onsager
     new_xhat, denoiser_helper, den_output = denoiser_fun(z, xhat, r, features, linear_helper)
-    #print "onsager added"
-    #new_r = features['y'] - batch_matvec_mul(features['H'], new_xhat) + onsager
     new_r = features['y'] - batch_matvec_mul(features['H'], new_xhat)
     new_onsager = denoiser_helper['onsager']
 
