@@ -62,11 +62,6 @@ class MMNet_graph():
                 #acc_NN = accuracy(indices, mimo.demodulate(x_NN[train_layer_no-1], modtypes))
             acc_NN = tf.reduce_max(temp)
 
-
-            print("tf_session: Optimizing for the total loss")
-            tf.summary.scalar('loss', tf.reduce_mean(loss))
-            #tf.summary.scalar('loss', loss[train_layer_no-1])
-            tf.summary.scalar('SER', tf.log(1.-acc_NN)/tf.log(10.))
             
             # Training operation
             print("tf_session: Optimizing for the total loss")
@@ -80,22 +75,22 @@ class MMNet_graph():
             
             # #### Training
             # define saver
-            saver = tf.train.Saver()
+            #saver = tf.train.Saver()
             
             # Create summary writer
             #merged = [0]
-            merged = tf.summary.merge_all()
+            #merged = tf.summary.merge_all()
             #print "merged"
             # Create session and initialize all variables
-            sess = tf.InteractiveSession()
+            sess = tf.Session()
             
-            train_writer = tf.summary.FileWriter('./reports/'+self.params['save_name']+'/log/train', sess.graph)
-            test_writer = tf.summary.FileWriter('./reports/'+self.params['save_name']+'/log/test', sess.graph)
+            #train_writer = tf.summary.FileWriter('./reports/'+self.params['save_name']+'/log/train', sess.graph)
+            #test_writer = tf.summary.FileWriter('./reports/'+self.params['save_name']+'/log/test', sess.graph)
             
             if len(self.params['start_from'])>1:
                 saver.restore(sess, self.params['start_from'])
             else:
                 sess.run(init)
             
-            nodes = {'measured_snr':actual_snrdB, 'batch_size':batch_size, 'lr': lr, 'snr_db_min': snr_db_min, 'snr_db_max':snr_db_max, 'x': x, 'x_id': indices, 'H': H, 'y': y, 'sess': sess, 'train': train_step, 'summary': merged, 'accuracy': acc_NN, 'test_summary_writer': test_writer, 'train_summary_writer': train_writer, 'loss': loss, 'saver': saver, 'mmse_accuracy': acc_mmse, 'constellation': constellation, 'logs': helper, 'init': init}
+            nodes = {'measured_snr':actual_snrdB, 'batch_size':batch_size, 'lr': lr, 'snr_db_min': snr_db_min, 'snr_db_max':snr_db_max, 'x': x, 'x_id': indices, 'H': H, 'y': y, 'sess': sess, 'train': train_step, 'accuracy': acc_NN, 'loss': loss, 'mmse_accuracy': acc_mmse, 'constellation': constellation, 'logs': helper, 'init': init}
         return nodes
