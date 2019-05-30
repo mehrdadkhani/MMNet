@@ -327,6 +327,8 @@ if __name__ == "__main__":
         schemesList.append('AMP')
     if args.BLAST:
         schemesList.append('BLAST')
+    if args.SDR:
+        schemesList.append('SDR')
 
     for sch in schemesList:
         path = "./baseline/%s/%s/%s/NT%d/NR%d/"%(sch, args.modulation, args.data_dir.split('/')[-1].rstrip('.npy'), NT, NR)
