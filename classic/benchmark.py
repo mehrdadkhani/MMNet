@@ -3,7 +3,7 @@ import random
 import numpy as np
 import pickle
 import json
-from sdrSolver import solvers
+from genSolver import solvers
 import matplotlib as mpl
 mpl.use('Agg')
 import matplotlib.pyplot as plt
