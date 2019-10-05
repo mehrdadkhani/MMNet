@@ -33,11 +33,6 @@ class MMNet_graph():
             if self.params['data']:
                 H = tf.placeholder(tf.float32, shape=(None, 2*self.params['N'], 2*self.params['K']), name='H')
                 y, noise_sigma, actual_snrdB = mimo.channel(x, snr_db_min, snr_db_max, H, self.params['data'], self.params['correlation'])
-
-#############################################################
-                #print('channels not correct any more')
-                #y, H, noise_sigma, actual_snrdB = mimo.channel(x, snr_db_min, snr_db_max, H, self.params['data'], self.params['correlation'])
-                print('fafafafafaf',H)
             else:
                 y, H, noise_sigma, actual_snrdB = mimo.channel(x, snr_db_min, snr_db_max, [], self.params['data'], self.params['correlation'])
 
